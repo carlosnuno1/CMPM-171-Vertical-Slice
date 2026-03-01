@@ -9,6 +9,7 @@ public class CapsuleControllerDriver : MonoBehaviour
     public float m_MinHeight;
     public float m_MaxHeight;
     public CapsuleCollider m_collider;
+    public float scalar;
 
 
     // Update is called once per frame
@@ -17,7 +18,7 @@ public class CapsuleControllerDriver : MonoBehaviour
         var height = Mathf.Clamp(m_XROrigin.CameraInOriginSpaceHeight, m_MinHeight, m_MaxHeight);
 
             Vector3 center = m_XROrigin.CameraInOriginSpacePos;
-            center.y = height / 2f + m_collider.radius;
+            center.y = (height / 2f + m_collider.radius) + scalar;
 
             m_collider.height = height;
             m_collider.center = center;

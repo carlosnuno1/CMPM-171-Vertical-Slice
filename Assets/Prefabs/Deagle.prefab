@@ -189,7 +189,7 @@ MonoBehaviour:
   grab: {fileID: 7525663284969889575}
   holster: {fileID: 0}
   pistol: {fileID: 790033244030126112}
-  damage: 20
+  damage: 50
   deagleAudioSource: {fileID: 2312527149550194122}
   deagleShot: {fileID: 8300000, guid: db165f2e8b64d43459da1392bdd29661, type: 3}
   ImpactParticleSystem: {fileID: 8465342995579122979, guid: facbe0e5aa37c93489788c2cd681da09, type: 3}
