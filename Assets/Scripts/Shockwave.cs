@@ -51,11 +51,11 @@ public class ShockwaveGrenade : MonoBehaviour
 
         foreach (Collider hit in victims)
         {
-            Rigidbody victimRb = hit.GetComponent<Rigidbody>();
+            Rigidbody victimRb = hit.GetComponentInParent<Rigidbody>();
             if (victimRb == null) continue;
-
             if (hit.CompareTag("Player"))
             {
+                Debug.Log("launch player");
                 Vector3 dir = (hit.transform.position - transform.position).normalized;
 
                 dir.y += 0.75f;
