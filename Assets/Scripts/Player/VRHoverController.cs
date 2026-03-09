@@ -15,6 +15,7 @@ public class VRHoverController : MonoBehaviour
     public float damping = 50f;
 
     public bool grounded;
+    public float groundFriction = 8f;
 
     void FixedUpdate()
     {
@@ -37,6 +38,10 @@ public class VRHoverController : MonoBehaviour
             float force = (error * springStrength) - (upwardVelocity * damping);
 
             rb.AddForce(Vector3.up * force);
+
+            Vector3 horizontalVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+            rb.AddForce(-horizontalVel * groundFriction, ForceMode.Acceleration);
+
         }
         else
         {
