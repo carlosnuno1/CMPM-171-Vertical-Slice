@@ -26,7 +26,6 @@ public class Climb : MonoBehaviour
             isClimbing = true;
             previousLeftHandPos = leftHandInteractor.transform.position;
             previousRightHandPos = rightHandInteractor.transform.position;
-            driver.scalar = 2f;
             Debug.Log("Started Climbing");
         }
     }
@@ -47,7 +46,6 @@ public class Climb : MonoBehaviour
             // Apply upward force when releasing the climbable object
             playerRigidbody.linearVelocity = new Vector3(playerRigidbody.linearVelocity.x, throwStrength, playerRigidbody.linearVelocity.z);
             isClimbing = false;
-            driver.scalar = 0.0f;
             Debug.Log("Stopped Climbing");
         }
     }

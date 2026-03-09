@@ -60,7 +60,6 @@ public class WebShooter : MonoBehaviour
     {
         float triggerValue = trigger.ReadValue<float>();
         bool isHolding = (interactor as UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor)?.hasSelection ?? false;
-        Debug.Log("Trigger value: " + triggerValue);
 
         if (triggerValue > 0 && !webShot && !isHolding)
         {
