@@ -31,7 +31,7 @@ public class WebShooterGrapple : MonoBehaviour
     private bool grappling;
     private bool isHolding;
     private Vector3 realHitPoint;
-    private static float cooldownTimer = 0f;
+    private float cooldownTimer = 0f;
 
     void Awake()
     {
