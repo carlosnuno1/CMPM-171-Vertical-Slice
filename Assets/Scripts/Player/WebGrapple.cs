@@ -20,7 +20,7 @@ public class WebShooterGrapple : MonoBehaviour
     [Header("Grapple Settings")]
     public float pullForce = 20f;
     public float maxDistance = 1000f;
-    public LayerMask grappleLayers;
+    public float grappleCooldown = 5f;
 
     [Header("Prediction")]
     public RaycastHit predictionHit;
@@ -31,6 +31,7 @@ public class WebShooterGrapple : MonoBehaviour
     private bool grappling;
     private bool isHolding;
     private Vector3 realHitPoint;
+    private static float cooldownTimer = 0f;
 
     void Awake()
     {
@@ -50,7 +51,7 @@ public class WebShooterGrapple : MonoBehaviour
         float triggerValue = trigger.ReadValue<float>();
         bool isHolding = (interactor as IXRSelectInteractor)?.hasSelection ?? false;
 
-        if (triggerValue > 0 && !grappling && !isHolding)
+        if (triggerValue > 0 && !grappling && !isHolding && cooldownTimer <= 0f)
         {
             ShootGrapple();
         }
@@ -65,10 +66,10 @@ public class WebShooterGrapple : MonoBehaviour
         bool isHolding = (interactor as IXRSelectInteractor)?.hasSelection ?? false;
 
         RaycastHit sphereCastHit;
-        Physics.SphereCast(shooterTip.position, predictionSphereCastRadius, shooterTip.forward, out sphereCastHit, maxDistance, grappleLayers);
+        Physics.SphereCast(shooterTip.position, predictionSphereCastRadius, shooterTip.forward, out sphereCastHit, maxDistance);
 
         RaycastHit raycastHit;
-        Physics.Raycast(shooterTip.position, shooterTip.forward, out raycastHit, maxDistance, grappleLayers);
+        Physics.Raycast(shooterTip.position, shooterTip.forward, out raycastHit, maxDistance);
 
         if (raycastHit.point != Vector3.zero)
             realHitPoint = raycastHit.point;
@@ -87,7 +88,7 @@ public class WebShooterGrapple : MonoBehaviour
             predictionPoint.gameObject.SetActive(false);
         }
 
-        if (isHolding)
+        if (isHolding || cooldownTimer > 0f)
             predictionPoint.gameObject.SetActive(false);
 
         predictionHit = raycastHit.point == Vector3.zero ? sphereCastHit : raycastHit;
@@ -106,7 +107,10 @@ public class WebShooterGrapple : MonoBehaviour
 
     void StopGrapple()
     {
+        if (!grappling) return;
+
         grappling = false;
+        cooldownTimer = grappleCooldown;
         lineRenderer.positionCount = 0;
     }
 
@@ -120,6 +124,9 @@ public class WebShooterGrapple : MonoBehaviour
 
     void Update()
     {
+        if (cooldownTimer > 0f)
+            cooldownTimer -= Time.deltaTime;
+
         HandleInput();
         CheckForSwingPoints();
 
