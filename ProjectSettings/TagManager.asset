@@ -10,6 +10,7 @@ TagManager:
   - Right Hand
   - FxTemporaire
   - Climable
+  - Menu
   layers:
   - Default
   - TransparentFX
