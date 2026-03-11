@@ -87,7 +87,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 30194011553801
-    m_Localized: ACCESSIBLITY
+    m_Localized: ACCESSIBILITY
     m_Metadata:
       m_Items: []
   - m_Id: 30194011553800
@@ -131,7 +131,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748112
-    m_Localized: ACCESSIBLITY
+    m_Localized: ACCESSIBILITY
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748113
@@ -148,6 +148,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 66521578946560
     m_Localized: START
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74856680210432
+    m_Localized: TURN SPEED
     m_Metadata:
       m_Items: []
   references:

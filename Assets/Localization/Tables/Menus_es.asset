@@ -150,6 +150,10 @@ MonoBehaviour:
     m_Localized: COMENZAR
     m_Metadata:
       m_Items: []
+  - m_Id: 74856680210432
+    m_Localized: VELOCIDAD DE GIRO
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
