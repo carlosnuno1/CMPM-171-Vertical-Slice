@@ -154,6 +154,14 @@ MonoBehaviour:
     m_Localized: VELOCIDAD DE GIRO
     m_Metadata:
       m_Items: []
+  - m_Id: 141032915550208
+    m_Localized: NIVEL 1 COMPLETO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 142384639066112
+    m_Localized: VOLVER AL INICIO
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

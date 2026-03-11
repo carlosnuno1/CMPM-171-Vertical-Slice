@@ -154,6 +154,14 @@ MonoBehaviour:
     m_Localized: TURN SPEED
     m_Metadata:
       m_Items: []
+  - m_Id: 141032915550208
+    m_Localized: LEVEL 1 COMPLETE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 142384639066112
+    m_Localized: RETURN TO MAIN
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

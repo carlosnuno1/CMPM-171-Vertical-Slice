@@ -151,6 +151,14 @@ MonoBehaviour:
     m_Key: Accessiblity.Turn
     m_Metadata:
       m_Items: []
+  - m_Id: 141032915550208
+    m_Key: Level.EndText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 142384639066112
+    m_Key: Level.MMReturn
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
