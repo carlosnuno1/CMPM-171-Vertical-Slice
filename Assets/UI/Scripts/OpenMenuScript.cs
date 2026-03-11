@@ -5,24 +5,38 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class OpenMenuScript : MonoBehaviour
 {
     [Header("UI Settings")]
     [SerializeField] public GameObject menuCanvas;
+    [SerializeField] public float menuHeightAdjust;
 
     [Header("Input Actions")]
-    [SerializeField] private InputActionReference openMenuAction;
+    [SerializeField] private InputActionAsset actions;
+
+    [Header("Controls")]
+    [SerializeField] public GameObject leftGrapple;
+    [SerializeField] public GameObject rightGrapple;
+    [SerializeField] public GameObject locomotion;
 
     public Transform head;
     private bool isMenuCanvas = false;
+    private InputAction openMenuAction;
 
+    void Awake()
+    {
+        openMenuAction = actions.FindAction("Player/Open Menu", true);
+        menuCanvas.SetActive(false);
+    }
     private void OnEnable()
     {
         if (openMenuAction != null)
         {
-            openMenuAction.action.performed += openMenuActionPerformed;
-            openMenuAction.action.Enable();
+            openMenuAction.performed += openMenuActionPerformed;
+            openMenuAction.Enable();
         }
     }
 
@@ -30,8 +44,8 @@ public class OpenMenuScript : MonoBehaviour
     {
         if (openMenuAction != null)
         {
-            openMenuAction.action.performed -= openMenuActionPerformed;
-            openMenuAction.action.Disable();
+            openMenuAction.performed -= openMenuActionPerformed;
+            openMenuAction.Disable();
         }
     }
 
@@ -53,12 +67,21 @@ public class OpenMenuScript : MonoBehaviour
             forwardDirection.Normalize();
 
             Vector3 targetPosition = head.position + (forwardDirection * 1); //adjust closeness
-            targetPosition.y = head.position.y + 1f; // adjust height
+            targetPosition.y = head.position.y + menuHeightAdjust; // adjust height
 
             menuCanvas.transform.position = targetPosition;
             menuCanvas.transform.rotation = Quaternion.Euler(0, yaw + 180, 0);
             menuCanvas.transform.forward *= -1; // flip forawrd
 
+            locomotion.SetActive(false);
+            leftGrapple.SetActive(false);
+            rightGrapple.SetActive(false);
+        } 
+        else 
+        {
+            locomotion.SetActive(true);
+            rightGrapple.SetActive(true);
+            leftGrapple.SetActive(true);
         }
     }
 }
