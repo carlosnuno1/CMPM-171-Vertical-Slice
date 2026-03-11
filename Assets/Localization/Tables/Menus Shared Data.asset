@@ -143,6 +143,10 @@ MonoBehaviour:
     m_Key: Uni.Return
     m_Metadata:
       m_Items: []
+  - m_Id: 66521578946560
+    m_Key: Main.Start
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

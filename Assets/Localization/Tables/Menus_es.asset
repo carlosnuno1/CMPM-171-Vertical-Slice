@@ -127,7 +127,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 30193965416448
-    m_Localized: "MEN\xDA PRINCIPAL"
+    m_Localized: "MEN\xDA"
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748112
@@ -144,6 +144,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 32946192203776
     m_Localized: AJUSTES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66521578946560
+    m_Localized: COMENZAR
     m_Metadata:
       m_Items: []
   references:
