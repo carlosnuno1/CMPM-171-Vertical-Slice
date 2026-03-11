@@ -91,18 +91,6 @@
                     "name": "OpenWatch",
                     "type": "Button",
                     "id": "ea3f094f-c3ba-4c03-8252-422e11f0f61f",
-                    "name": "Left Trigger",
-                    "type": "Button",
-                    "id": "a43b6b60-876d-403c-baec-e6fbad5a6494",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Right Trigger",
-                    "type": "Button",
-                    "id": "02d20043-f30f-4234-a380-649eb183370b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -166,6 +154,24 @@
                     "name": "sim trigger",
                     "type": "Button",
                     "id": "5724cd9b-5848-4fd9-bfd3-7e789d8994b6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Left Trigger",
+                    "type": "Button",
+                    "id": "e8e10ec8-0165-40ae-ba13-4efc0b13fa13",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right Trigger",
+                    "type": "Button",
+                    "id": "3dda2b8c-b985-4635-b3be-be85d1edef7d",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -577,12 +583,6 @@
                     "processors": "",
                     "groups": ";XR",
                     "action": "OpenWatch",
-                    "id": "7b34d8ae-0f80-4a99-b204-8b603cc077a7",
-                    "path": "<XRController>{RightHand}/{TriggerButton}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";XR",
-                    "action": "Right Trigger",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -594,12 +594,6 @@
                     "processors": "",
                     "groups": ";XR",
                     "action": "OpenWatch",
-                    "id": "47e03d61-bf2e-43a0-88c0-67c14c4bd5dd",
-                    "path": "<XRController>{RightHand}/{PrimaryButton}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";XR",
-                    "action": "A Button",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -666,6 +660,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "sim trigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f43efe5-3176-49dd-98ca-d044779e0ef4",
+                    "path": "<XRController>{RightHand}/{TriggerButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right Trigger",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
