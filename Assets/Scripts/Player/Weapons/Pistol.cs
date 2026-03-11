@@ -1,0 +1,190 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.InputSystem;
+
+public class Pistol : Gun  
+{
+    // public InputActionReference leftReloadButton;
+    // public InputActionReference rightReloadButton;
+    [SerializeField] private InputActionAsset actions;
+    public float recoilForce = 7;
+    public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab;
+    public GameObject holster;
+    public GameObject pistol;
+    public float damage = 20f;
+    public AudioSource deagleAudioSource;
+    public AudioClip deagleShot;
+    
+    private float triggerValue;
+    private float reloadButtonValue;
+
+    private InputAction leftReloadButton;
+    private InputAction rightReloadButton;
+
+    [SerializeField] private ParticleSystem ImpactParticleSystem;
+    [SerializeField] private TrailRenderer BulletTrail;
+    
+
+    private void Awake()
+    {
+        leftReloadButton = actions.FindAction("Player/Left Reload", true);
+        rightReloadButton = actions.FindAction("Player/Right Reload", true);
+        leftReloadButton.Enable();
+        rightReloadButton.Enable();
+        InputSystem.onDeviceChange += OnDeviceChange;
+        InputSystem.onDeviceChange += OnDeviceChange;
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        HandleInput();
+    }
+
+    private void HandleInput()
+    {
+        var interactor = grab.firstInteractorSelecting;
+        if (interactor == null) return;
+        
+        var interactorComp = interactor as Component;
+        if (interactorComp == null) return;
+
+        GameObject grabbingObject = interactorComp.gameObject;
+
+        if (grabbingObject == null) return;
+
+        if (grabbingObject.CompareTag("Left Hand"))
+        {
+            reloadButtonValue = leftReloadButton.ReadValue<float>();
+            Debug.Log("ReloadButton value: " + reloadButtonValue);
+        } 
+        else if (grabbingObject.CompareTag("Right Hand"))
+        {
+            reloadButtonValue = rightReloadButton.ReadValue<float>();
+            Debug.Log("ReloadButton value: " + reloadButtonValue);
+        }
+
+        if (reloadButtonValue > 0 && grab.isSelected)
+        {
+            TryReload();
+            Debug.Log(grab.firstInteractorSelecting);
+        }
+    }
+
+
+    public override void Shoot()
+    {
+        deagleAudioSource.PlayOneShot(deagleShot);
+        RaycastHit hit;
+        AddEffect();
+        if(Physics.Raycast(gunTipTransform.position, gunTipTransform.forward, out hit, gunData.shootingRange, gunData.targetLayerMask))
+        {
+            TrailRenderer trail = Instantiate(BulletTrail, gunTipTransform.position, Quaternion.identity);
+            // ParticleSystem currentMuzzleFlash = Instantiate(muzzleFlash, gunTipTransform.position, Quaternion.identity);
+            // Destroy(currentMuzzleFlash, .5f);
+            StartCoroutine(SpawnTrail(trail, hit));
+            EnemyHealth enemy = hit.collider.GetComponent<EnemyHealth>();
+            if (enemy != null)
+            {
+                // Deal damage to the enemy
+                enemy.TakeDamage(damage);
+                Debug.Log("Enemy hit for " + damage + " damage.");
+            }        
+        }
+    }
+
+        private IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit Hit)
+    {
+        float time = 0;
+        Vector3 startPosition = Trail.transform.position;
+
+        while (time < 1)
+        {
+            Trail.transform.position = Vector3.Lerp(startPosition, Hit.point, time);
+            time += Time.deltaTime / Trail.time;
+
+            yield return null;
+        }
+        Trail.transform.position = Hit.point;
+        Instantiate(ImpactParticleSystem, Hit.point, Quaternion.LookRotation(Hit.normal));
+        Destroy(Trail.gameObject,Trail.time);
+    }
+
+
+    private void AddEffect()
+    {
+        var interactor = grab.firstInteractorSelecting;
+        if (interactor == null)
+        {
+            Debug.Log("interactor null");
+            return;
+        }
+        
+        var interactorComp = interactor as Component;
+        if (interactorComp == null)
+        {
+            Debug.Log("interactor as component null");
+            return;
+        }
+
+        GameObject grabbingObject = interactorComp.gameObject;
+
+        Transform attachPoint = grabbingObject.transform.Find("AttachPoint");
+        if (attachPoint != null)
+        {
+            Rigidbody recoilPointrb = attachPoint.GetComponent<Rigidbody>();
+            Debug.Log("adding recoil force");
+            recoilPointrb.AddForce(-transform.forward * recoilForce, ForceMode.Impulse);
+            recoilPointrb.transform.localRotation = Quaternion.AngleAxis(-10 * recoilForce, Vector3.right);
+        } 
+        else 
+        {
+            Debug.Log("attachpoint of child not found");
+            return;
+        }
+
+        
+    }
+
+    private void OnDeviceChange(InputDevice device, InputDeviceChange change)
+    {
+        switch (change)
+        {
+            case InputDeviceChange.Disconnected:
+                leftReloadButton.Disable();
+                rightReloadButton.Disable();
+                break;
+            case InputDeviceChange Reconnected:
+                leftReloadButton.Enable();
+                rightReloadButton.Enable();
+                break;
+        }
+    }
+
+    public void ReturnToHolster()
+    {
+        pistol.transform.position = holster.transform.position;
+    }
+
+    public void DestroyPistol()
+    {
+        StartCoroutine(DestroySelf());
+    }
+
+    private IEnumerator DestroySelf()
+    {
+        yield return new WaitForSeconds(2.0f);
+
+        var interactable = grab as UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable;
+
+        if (interactable == null || interactable.interactorsSelecting.Count <= 0)
+        {
+            Destroy(pistol);
+            Debug.Log("Destorying ak");
+        }
+    }
+}

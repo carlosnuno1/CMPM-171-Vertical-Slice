@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Explosion.prefab.meta
+guid: 66a29ffcf748a9744b0dcdddb7b787a0
+========
+guid: bcecc4dc7b9cbf945abd78f4f8c62199
+>>>>>>>> teleport-enemy-tweaking:Assets/Prefabs/WASD Player.prefab.meta
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
