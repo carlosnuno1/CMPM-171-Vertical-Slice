@@ -21,6 +21,8 @@ public class OpenMenuScript : MonoBehaviour
     [SerializeField] public GameObject leftGrapple;
     [SerializeField] public GameObject rightGrapple;
     [SerializeField] public GameObject locomotion;
+    [SerializeField] public GameObject leftUIInteractor;
+    [SerializeField] public GameObject rightUIInteractor;
 
     public Transform head;
     private bool isMenuCanvas = false;
@@ -30,6 +32,8 @@ public class OpenMenuScript : MonoBehaviour
     {
         openMenuAction = actions.FindAction("Player/Open Menu", true);
         menuCanvas.SetActive(false);
+        leftUIInteractor.SetActive(false);
+        rightUIInteractor.SetActive(false);
     }
     private void OnEnable()
     {
@@ -76,12 +80,16 @@ public class OpenMenuScript : MonoBehaviour
             locomotion.SetActive(false);
             leftGrapple.SetActive(false);
             rightGrapple.SetActive(false);
+            leftUIInteractor.SetActive(true);
+            rightUIInteractor.SetActive(true);
         } 
         else 
         {
             locomotion.SetActive(true);
             rightGrapple.SetActive(true);
             leftGrapple.SetActive(true);
+            leftUIInteractor.SetActive(false);
+            rightUIInteractor.SetActive(false);
         }
     }
 }
