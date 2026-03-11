@@ -21,6 +21,7 @@ public class WebShooterGrapple : MonoBehaviour
     public float pullForce = 20f;
     public float maxDistance = 1000f;
     public float grappleCooldown = 5f;
+    public LayerMask grappleLayers;
 
     [Header("Prediction")]
     public RaycastHit predictionHit;
@@ -66,10 +67,10 @@ public class WebShooterGrapple : MonoBehaviour
         bool isHolding = (interactor as IXRSelectInteractor)?.hasSelection ?? false;
 
         RaycastHit sphereCastHit;
-        Physics.SphereCast(shooterTip.position, predictionSphereCastRadius, shooterTip.forward, out sphereCastHit, maxDistance);
+        Physics.SphereCast(shooterTip.position, predictionSphereCastRadius, shooterTip.forward, out sphereCastHit, maxDistance, grappleLayers);
 
         RaycastHit raycastHit;
-        Physics.Raycast(shooterTip.position, shooterTip.forward, out raycastHit, maxDistance);
+        Physics.Raycast(shooterTip.position, shooterTip.forward, out raycastHit, maxDistance, grappleLayers);
 
         if (raycastHit.point != Vector3.zero)
             realHitPoint = raycastHit.point;
