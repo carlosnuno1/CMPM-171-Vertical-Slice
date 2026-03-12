@@ -6,6 +6,8 @@ public class PlayerHealth : MonoBehaviour
     [Header("Health Settings")]
     public float maxHealth = 100f;
     public float bulletDamage = 20f;
+    public SceneLoader SceneManagement;
+    public string deathScene;
 
     public float currentHealth;
 
@@ -28,6 +30,6 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("Player Dead");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManagement.LoadScene(deathScene);
     }
 }

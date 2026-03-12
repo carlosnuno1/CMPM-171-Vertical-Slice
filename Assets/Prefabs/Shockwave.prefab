@@ -491,7 +491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShockwaveGrenade
   fuseDelay: 1
   blastRadius: 4
-  launchPower: 1.7
+  launchPower: 4
   explosionEffectPrefab: {fileID: 0}
 --- !u!54 &7158265759221933902
 Rigidbody:
