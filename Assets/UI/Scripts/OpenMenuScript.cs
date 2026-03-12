@@ -24,8 +24,19 @@ public class OpenMenuScript : MonoBehaviour
     [Header("Input Actions")]
     [SerializeField] private InputActionReference openMenuAction;
 
+    [Header("Controls To Turn OFF")]
+    [SerializeField] public GameObject leftGrapple;
+    [SerializeField] public GameObject rightGrapple;
+    [SerializeField] public GameObject leftUIInteractor;
+    [SerializeField] public GameObject rightUIInteractor;
+
     public Transform head;
     private bool isMenuCanvas = false;
+
+    void start()
+    {
+        ToggleMenu();
+    }
 
     private void OnEnable()
     {
@@ -50,7 +61,7 @@ public class OpenMenuScript : MonoBehaviour
         ToggleMenu();
     }
 
-    private void ToggleMenu()
+    public void ToggleMenu()
     {
         isMenuCanvas = !isMenuCanvas;
         menuCanvas.SetActive(isMenuCanvas);
@@ -71,6 +82,18 @@ public class OpenMenuScript : MonoBehaviour
             menuCanvas.transform.rotation = Quaternion.Euler(0, yaw + 180, 0);
             menuCanvas.transform.forward *= -1; // flip forawrd
 
+            Debug.Log("canvas on controlls off");
+            rightGrapple.SetActive(false);
+            leftGrapple.SetActive(false);
+            rightUIInteractor.SetActive(true);
+            leftUIInteractor.SetActive(true);
+        } else 
+        {
+            Debug.Log("canvas off controlls on");
+            rightGrapple.SetActive(true);
+            leftGrapple.SetActive(true);
+            rightUIInteractor.SetActive(false);
+            leftUIInteractor.SetActive(false);
         }
     }
 
@@ -86,6 +109,7 @@ public class OpenMenuScript : MonoBehaviour
         creditsEmpty.SetActive(false);
         deathPanelEmpty.SetActive(false);
         levelOneEmpty.SetActive(false);
+
     }
 
 }
