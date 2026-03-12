@@ -69,13 +69,12 @@ public class ClimbTweak : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (leftHandClimbing || rightHandClimbing)
         {
             Vector3 movement = Vector3.zero;
 
-            // Capture the velocity of both hands (difference in position)
             if (leftHandClimbing)
             {
                 Vector3 delta = leftHandInteractor.transform.position - previousLeftHandPos;
@@ -92,10 +91,13 @@ public class ClimbTweak : MonoBehaviour
                 previousRightHandPos = rightHandInteractor.transform.position;
             }
 
-            // Transfer the hand velocity to the player
-            Vector3 targetPosition = playerRigidbody.position + movement;
-            Vector3 smoothedPosition = Vector3.Lerp(playerRigidbody.position, targetPosition, Time.deltaTime * smoothClimbSpeed);
-            playerRigidbody.MovePosition(smoothedPosition);
+            Vector3 climbVelocity = movement / Time.deltaTime;
+
+            playerRigidbody.linearVelocity = new Vector3(
+                climbVelocity.x,
+                climbVelocity.y,
+                climbVelocity.z
+            );
         }
     }
 

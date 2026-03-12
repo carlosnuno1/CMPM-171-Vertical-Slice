@@ -19,19 +19,20 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("hit player");
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             if (playerHealth == null)
+                Debug.Log("finding component in parent");
                 playerHealth = other.GetComponentInParent<PlayerHealth>();
 
             if (playerHealth != null)
+                Debug.Log("Doing damage");
                 playerHealth.TakeDamage(playerHealth.bulletDamage);
 
-            Debug.Log("Bullet destroyed: Player");
             Destroy(gameObject);
         }
         else if (!other.CompareTag("Enemy") && !other.isTrigger)
         {
-            Debug.Log("Bullet destroyed: Environment");
             Destroy(gameObject);
         }
     }
