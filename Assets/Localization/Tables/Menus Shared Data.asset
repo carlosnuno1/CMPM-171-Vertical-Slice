@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Menus Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Menus
+  m_TableCollectionNameGuidString: 1c8e42e58922aa147afdf1667162824a
+  m_Entries:
+  - m_Id: 30193965416448
+    m_Key: Main.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553792
+    m_Key: Main.Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553793
+    m_Key: Main.Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553794
+    m_Key: Main.Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553795
+    m_Key: Main.Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553796
+    m_Key: Credits.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553797
+    m_Key: Credits.Programmers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32946192203776
+    m_Key: Settings.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553798
+    m_Key: Settings.General
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553799
+    m_Key: Settings.Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553800
+    m_Key: Settings.Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553801
+    m_Key: Settings.Accessiblty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553802
+    m_Key: General.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748096
+    m_Key: General.SubTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748097
+    m_Key: General.English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748098
+    m_Key: General.Spanish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748099
+    m_Key: General.Japanese
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748100
+    m_Key: Audio.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748101
+    m_Key: Audio.SubTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748102
+    m_Key: Audio.Master
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748103
+    m_Key: Audio.SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748104
+    m_Key: Audio.Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748105
+    m_Key: Controls.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748106
+    m_Key: Controls.SubTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748107
+    m_Key: Controls.Reload
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748108
+    m_Key: Controls.Shoot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748109
+    m_Key: Controls.Hold
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748110
+    m_Key: Controls.Release
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748111
+    m_Key: Controls.Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748112
+    m_Key: Accessiblity.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748113
+    m_Key: Accessiblity.SubTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748114
+    m_Key: Uni.Return
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66521578946560
+    m_Key: Main.Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74856680210432
+    m_Key: Accessiblity.Turn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 141032915550208
+    m_Key: Level.EndText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 142384639066112
+    m_Key: Level.MMReturn
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 6042334521774047444
+  references:
+    version: 2
+    RefIds:
+    - rid: 6042334521774047444
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1773218156260

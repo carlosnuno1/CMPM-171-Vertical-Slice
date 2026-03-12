@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Menus_es
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: 1c8e42e58922aa147afdf1667162824a, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 30194015748110
+    m_Localized: "AUTORIZACI\xD3N PARA USAR ONDAS DE CHOQUE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748111
+    m_Localized: "MEN\xDA/PAUSA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748109
+    m_Localized: SOSTENGA PISTOLAS/ONDAS DE CHOQUE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748108
+    m_Localized: DISPARAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748107
+    m_Localized: RECARGAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748106
+    m_Localized: "C\xD3MO JUGAR"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748105
+    m_Localized: CONTROLES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748104
+    m_Localized: "M\xDASICA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748103
+    m_Localized: Efectos de sonido
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748102
+    m_Localized: MAESTRO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748101
+    m_Localized: ARRASTRE PARA AJUSTAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748100
+    m_Localized: AUDIO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748099
+    m_Localized: "JAPON\xC9S"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748098
+    m_Localized: "ESPA\xD1OL"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748097
+    m_Localized: "INGL\xC9S"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748096
+    m_Localized: SELECCIONE UN IDIOMA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553802
+    m_Localized: GENERAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553801
+    m_Localized: ACCESIBILIDAD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553800
+    m_Localized: CONTROLES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553799
+    m_Localized: AUDIO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553798
+    m_Localized: GENERAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553797
+    m_Localized: PROGRAMADORES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553796
+    m_Localized: "CR\xC9DITOS"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553795
+    m_Localized: ABANDONAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553794
+    m_Localized: "CR\xC9DITOS"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553793
+    m_Localized: AJUSTES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553792
+    m_Localized: CONTINUAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30193965416448
+    m_Localized: "MEN\xDA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748112
+    m_Localized: ACCESIBILIDAD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748113
+    m_Localized: "AJUSTAR SEG\xDAN SEA NECESARIO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748114
+    m_Localized: DEVOLVER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32946192203776
+    m_Localized: AJUSTES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66521578946560
+    m_Localized: COMENZAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74856680210432
+    m_Localized: VELOCIDAD DE GIRO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 141032915550208
+    m_Localized: NIVEL 1 COMPLETO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 142384639066112
+    m_Localized: VOLVER AL INICIO
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
