@@ -170,8 +170,9 @@ public class Pistol : Gun
         pistol.transform.position = holster.transform.position;
     }
 
-    public void DestroyPistol()
+        public void DestroyPistol()
     {
+        if (!isActiveAndEnabled || !gameObject.activeInHierarchy) return;
         StartCoroutine(DestroySelf());
     }
 

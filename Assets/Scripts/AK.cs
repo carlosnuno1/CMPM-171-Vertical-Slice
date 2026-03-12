@@ -171,9 +171,9 @@ public class AK : AutomaticGun
 
     public void DestroyAK()
     {
+        if (!isActiveAndEnabled || !gameObject.activeInHierarchy) return;
         StartCoroutine(DestroySelf());
     }
-
     private IEnumerator DestroySelf()
     {
         yield return new WaitForSeconds(2.0f);

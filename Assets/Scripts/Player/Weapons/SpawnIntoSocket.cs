@@ -23,6 +23,7 @@ public class SpawnIntoSocket : MonoBehaviour
     }
     public void SpawnAndInsert()
     {
+        if (!isActiveAndEnabled || !gameObject.activeInHierarchy) return;
         StartCoroutine(SpawnAndInsertRoutine());
     }
 
