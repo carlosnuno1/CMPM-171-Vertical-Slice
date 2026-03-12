@@ -5,42 +5,34 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.XR.Interaction.Toolkit.Interactors;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class OpenMenuScript : MonoBehaviour
 {
     [Header("UI Settings")]
     [SerializeField] public GameObject menuCanvas;
-    [SerializeField] public float menuHeightAdjust;
+    [SerializeField] public GameObject watchEmpty;
+    [SerializeField] public GameObject generalEmpty;
+    [SerializeField] public GameObject audioEmpty;
+    [SerializeField] public GameObject controlsEmpty;
+    [SerializeField] public GameObject accessiblityEmpty;
+    [SerializeField] public GameObject mainMenuEmpty;
+    [SerializeField] public GameObject settingsEmpty;
+    [SerializeField] public GameObject creditsEmpty;
+    [SerializeField] public GameObject deathPanelEmpty;
+    [SerializeField] public GameObject levelOneEmpty;
 
     [Header("Input Actions")]
-    [SerializeField] private InputActionAsset actions;
-
-    [Header("Controls")]
-    [SerializeField] public GameObject leftGrapple;
-    [SerializeField] public GameObject rightGrapple;
-    [SerializeField] public GameObject locomotion;
-    [SerializeField] public GameObject leftUIInteractor;
-    [SerializeField] public GameObject rightUIInteractor;
+    [SerializeField] private InputActionReference openMenuAction;
 
     public Transform head;
     private bool isMenuCanvas = false;
-    private InputAction openMenuAction;
 
-    void Awake()
-    {
-        openMenuAction = actions.FindAction("Player/Open Menu", true);
-        menuCanvas.SetActive(false);
-        leftUIInteractor.SetActive(false);
-        rightUIInteractor.SetActive(false);
-    }
     private void OnEnable()
     {
         if (openMenuAction != null)
         {
-            openMenuAction.performed += openMenuActionPerformed;
-            openMenuAction.Enable();
+            openMenuAction.action.performed += openMenuActionPerformed;
+            openMenuAction.action.Enable();
         }
     }
 
@@ -48,8 +40,8 @@ public class OpenMenuScript : MonoBehaviour
     {
         if (openMenuAction != null)
         {
-            openMenuAction.performed -= openMenuActionPerformed;
-            openMenuAction.Disable();
+            openMenuAction.action.performed -= openMenuActionPerformed;
+            openMenuAction.action.Disable();
         }
     }
 
@@ -65,31 +57,35 @@ public class OpenMenuScript : MonoBehaviour
 
         if (isMenuCanvas)
         {
+            PanelsOff();
+
             float yaw = head.eulerAngles.y;
 
             Vector3 forwardDirection = Quaternion.Euler(0, yaw, 0) * Vector3.forward;
             forwardDirection.Normalize();
 
             Vector3 targetPosition = head.position + (forwardDirection * 1); //adjust closeness
-            targetPosition.y = head.position.y + menuHeightAdjust; // adjust height
+            targetPosition.y = head.position.y + 1f; // adjust height
 
             menuCanvas.transform.position = targetPosition;
             menuCanvas.transform.rotation = Quaternion.Euler(0, yaw + 180, 0);
             menuCanvas.transform.forward *= -1; // flip forawrd
 
-            locomotion.SetActive(false);
-            leftGrapple.SetActive(false);
-            rightGrapple.SetActive(false);
-            leftUIInteractor.SetActive(true);
-            rightUIInteractor.SetActive(true);
-        } 
-        else 
-        {
-            locomotion.SetActive(true);
-            rightGrapple.SetActive(true);
-            leftGrapple.SetActive(true);
-            leftUIInteractor.SetActive(false);
-            rightUIInteractor.SetActive(false);
         }
     }
+
+    private void PanelsOff()
+    {
+        controlsEmpty.SetActive(false);
+        accessiblityEmpty.SetActive(false);
+        watchEmpty.SetActive(true);
+        generalEmpty.SetActive(false);
+        settingsEmpty.SetActive(false);
+        audioEmpty.SetActive(false);
+        mainMenuEmpty.SetActive(false);
+        creditsEmpty.SetActive(false);
+        deathPanelEmpty.SetActive(false);
+        levelOneEmpty.SetActive(false);
+    }
+
 }

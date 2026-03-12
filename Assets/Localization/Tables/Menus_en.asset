@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Menus_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 1c8e42e58922aa147afdf1667162824a, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 30194015748110
+    m_Localized: RELEASE TO USE SHOCKWAVES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748111
+    m_Localized: MENU/PAUSE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748109
+    m_Localized: HOLD PISTOLS/SHOCKWAVES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748108
+    m_Localized: SHOOT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748107
+    m_Localized: RELOAD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748106
+    m_Localized: HOW TO PLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748105
+    m_Localized: CONTROLS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748104
+    m_Localized: MUSIC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748103
+    m_Localized: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748102
+    m_Localized: MASTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748101
+    m_Localized: DRAG TO ADJUST
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748100
+    m_Localized: AUDIO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748099
+    m_Localized: JAPANESE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748098
+    m_Localized: SPANISH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748097
+    m_Localized: ENGLISH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748096
+    m_Localized: SELECT A LANGUAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553802
+    m_Localized: GENERAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553801
+    m_Localized: ACCESSIBILITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553800
+    m_Localized: CONTROLS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553799
+    m_Localized: AUDIO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553798
+    m_Localized: GENERAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553797
+    m_Localized: PROGRAMMERS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553796
+    m_Localized: CREDITS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553795
+    m_Localized: QUIT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553794
+    m_Localized: CREDITS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553793
+    m_Localized: SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194011553792
+    m_Localized: CONTINUE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30193965416448
+    m_Localized: MAIN MENU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748112
+    m_Localized: ACCESSIBILITY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748113
+    m_Localized: ADJUST AS NEEDED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30194015748114
+    m_Localized: RETURN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32946192203776
+    m_Localized: SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66521578946560
+    m_Localized: START
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74856680210432
+    m_Localized: TURN SPEED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 141032915550208
+    m_Localized: LEVEL 1 COMPLETE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 142384639066112
+    m_Localized: RETURN TO MAIN
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
