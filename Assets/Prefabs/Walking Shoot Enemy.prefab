@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 8407598194848590621}
   - component: {fileID: 4430455461886604902}
   - component: {fileID: 919046912917402079}
+  - component: {fileID: 870700894409665204}
   m_Layer: 0
   m_Name: Walking Shoot Enemy
   m_TagString: Untagged
@@ -333,7 +334,30 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 0.17079449, z: 0.35487366}
+  m_Center: {x: 0, y: 0.50855106, z: 0.0016832352}
+--- !u!136 &870700894409665204
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8705352896679173004}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.24
+  m_Height: 1
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2433778268840921381
 PrefabInstance:
