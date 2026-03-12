@@ -1,191 +1,299 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAIBehavior : MonoBehaviour
 {
-    public enum EnemyState { Patrol, Chase, Shoot, Reposition }
+    public enum EnemyState
+    {
+        Patrol,
+        Chase,
+        Shoot,
+        Reposition
+    }
 
-    [Header("Targeting")]
-    public Transform player;
+    [Header("Waypoints")]
     public Transform[] waypoints;
-    public LayerMask obstacleLayer;
+    public Transform player;
 
-    [Header("Flying Settings")]
-    public float flyHeight = 4f;
-    public float flySpeed = 5f;
-    public float preferredDistanceInFront = 6f;
-    public float bodyRotationSpeed = 5f;
-    public float floatAmplitude = 0.3f;
-    public float floatFrequency = 1.2f;
+    [Header("Detection")]
+    public float detectionRadius = 10f;
+    public float playerReachingPoint = 1f;
 
-    [Header("Obstacle Avoidance")]
-    public float avoidanceDistance = 4f;
-    public float avoidanceForce = 7f;
+    [Header("Movement")]
+    public float patrolSpeed = 3.5f;
+    public float chaseSpeed = 5.5f;
+    public float waypointReachingPoint = 0.5f;
 
     [Header("Shooting")]
     public GameObject pewpewPrefab;
     public Transform firePoint;
     public float timeBetweenShots = 1f;
     public int shotCount = 3;
+    public float shootingDistance = 8f;
     public float bulletForce = 40f;
 
-    [Header("Reposition (Swoop)")]
-    public float swoopRadius = 8f;
-    public float swoopSpeedMultiplier = 1.8f;
+    [Header("Rotation")]
+    public float bodyRotationSpeed = 5f;
+
+    [Header("Reposition (Flying Rigidbody)")]
+    public float repositionRadius = 5f;
+    public float minDistanceFromPlayer = 2f;
+    public float flyForce = 50f;
+    public float maxFlySpeed = 20f;
+    public float hoverHeight = 2f;
+    public float arrivalDistance = 0.5f;
 
     private EnemyState currentState = EnemyState.Patrol;
+
+    private NavMeshAgent agent;
+    private Rigidbody rb;
+
+    private int currentWaypoint = 0;
     private int shotsFired = 0;
     private float shotTimer = 0f;
-    private int waypointIndex = 0;
-    private Vector3 targetFlyPos;
+    private float buffer = 2f;
+
+    private bool isFlying = false;
+    private Vector3 flyTarget;
 
     void Start()
     {
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        agent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
 
-        targetFlyPos = transform.position;
-        changeState(EnemyState.Patrol);
+        agent.speed = patrolSpeed;
+        agent.stoppingDistance = waypointReachingPoint;
+
+        if (waypoints.Length > 0)
+        {
+            MoveToNextWaypoint();
+        }
     }
 
     void Update()
     {
-        if (player == null) return;
+        if (isFlying)
+            return;
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        float distance = Vector3.Distance(transform.position, player.position);
 
         switch (currentState)
         {
             case EnemyState.Patrol:
-                UpdatePatrolState(distanceToPlayer);
+                UpdatePatrol(distance);
                 break;
+
             case EnemyState.Chase:
-                UpdateChaseState(distanceToPlayer);
+                UpdateChase(distance);
                 break;
+
             case EnemyState.Shoot:
-                UpdateShootingState(distanceToPlayer);
+                UpdateShoot(distance);
                 break;
+
             case EnemyState.Reposition:
-                UpdateRepositionState();
+                BeginReposition();
                 break;
         }
-
-        ApplyFlyingMovement();
-        KeepUprightAndFacePlayer();
-        AimFirePointAtPlayer();
     }
 
-    void ApplyFlyingMovement()
+    void FixedUpdate()
     {
-        Vector3 directionToTarget = (targetFlyPos - transform.position).normalized;
-        Vector3 adjustedDirection = CalculateAvoidance(directionToTarget);
-        Vector3 moveStep = transform.position + adjustedDirection;
-
-        moveStep.y += Mathf.Sin(Time.time * floatFrequency) * floatAmplitude;
-
-        float currentSpeed = (currentState == EnemyState.Reposition) ? flySpeed * swoopSpeedMultiplier : flySpeed;
-        transform.position = Vector3.MoveTowards(transform.position, moveStep, currentSpeed * Time.deltaTime);
-    }
-
-    Vector3 CalculateAvoidance(Vector3 currentDir)
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, currentDir, out hit, avoidanceDistance, obstacleLayer))
+        if (isFlying)
         {
-            Vector3 avoidDir = Vector3.Reflect(currentDir, hit.normal);
-            avoidDir.y = 0;
-
-            return (currentDir + avoidDir).normalized * avoidanceForce;
+            HandleFlyingPhysics();
         }
-        return currentDir;
     }
 
-    void UpdatePatrolState(float dist)
+    void UpdatePatrol(float distance)
     {
-        if (dist <= 15f)
+        if (distance <= detectionRadius)
         {
-            changeState(EnemyState.Chase);
+            ChangeState(EnemyState.Chase);
             return;
         }
 
-        if (waypoints != null && waypoints.Length > 0)
-        {
-            targetFlyPos = waypoints[waypointIndex].position;
-            if (Vector3.Distance(transform.position, targetFlyPos) < 1f)
-                waypointIndex = (waypointIndex + 1) % waypoints.Length;
-        }
+        PatrolWaypoints();
     }
 
-    void UpdateChaseState(float dist)
+    void UpdateChase(float distance)
     {
-        if (dist <= 10f)
+        if (distance > detectionRadius * buffer)
         {
-            changeState(EnemyState.Shoot);
+            ChangeState(EnemyState.Patrol);
             return;
         }
-        targetFlyPos = player.position + (player.forward * preferredDistanceInFront) + (Vector3.up * flyHeight);
+
+        if (distance <= shootingDistance)
+        {
+            ChangeState(EnemyState.Shoot);
+            return;
+        }
+
+        agent.SetDestination(player.position);
     }
 
-    void UpdateShootingState(float dist)
+    void UpdateShoot(float distance)
     {
-        targetFlyPos = player.position + (player.forward * preferredDistanceInFront) + (Vector3.up * flyHeight);
+        if (distance > shootingDistance + buffer)
+        {
+            ChangeState(EnemyState.Chase);
+            return;
+        }
+
+        agent.isStopped = true;
+        RotateTowardsPlayer();
 
         shotTimer -= Time.deltaTime;
+
         if (shotTimer <= 0f)
         {
             Shoot();
             shotTimer = timeBetweenShots;
             shotsFired++;
-            if (shotsFired >= shotCount) changeState(EnemyState.Reposition);
+
+            if (shotsFired >= shotCount)
+            {
+                ChangeState(EnemyState.Reposition);
+            }
         }
     }
 
-    void UpdateRepositionState()
+    void BeginReposition()
     {
-        if (Vector3.Distance(transform.position, targetFlyPos) < 1.5f)
+        flyTarget = FindRepositionPosition();
+        flyTarget.y = hoverHeight;
+
+        agent.isStopped = true;
+        agent.updatePosition = false;
+        agent.updateRotation = false;
+
+        rb.linearVelocity = Vector3.zero;
+        isFlying = true;
+    }
+
+    void HandleFlyingPhysics()
+    {
+        Vector3 direction = flyTarget - transform.position;
+        float distance = direction.magnitude;
+
+        if (distance < arrivalDistance)
         {
+            isFlying = false;
+
+            rb.linearVelocity = Vector3.zero;
+
+            agent.updatePosition = true;
+            agent.updateRotation = true;
+            agent.Warp(transform.position);
+
             shotsFired = 0;
-            changeState(EnemyState.Shoot);
+            ChangeState(EnemyState.Shoot);
+            return;
         }
+
+        direction.Normalize();
+
+        if (rb.linearVelocity.magnitude < maxFlySpeed)
+        {
+            rb.AddForce(direction * flyForce, ForceMode.Acceleration);
+        }
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        rb.MoveRotation(Quaternion.Slerp(
+            rb.rotation,
+            targetRotation,
+            Time.fixedDeltaTime * bodyRotationSpeed
+        ));
     }
 
-    void changeState(EnemyState newState)
+    void ChangeState(EnemyState newState)
     {
+        if (newState == EnemyState.Patrol)
+        {
+            agent.speed = patrolSpeed;
+            agent.stoppingDistance = waypointReachingPoint;
+            agent.isStopped = false;
+            MoveToNextWaypoint();
+        }
+
+        if (newState == EnemyState.Chase)
+        {
+            agent.speed = chaseSpeed;
+            agent.stoppingDistance = playerReachingPoint;
+            agent.isStopped = false;
+        }
+
+        if (newState == EnemyState.Shoot)
+        {
+            agent.isStopped = true;
+            shotTimer = 0f;
+        }
+
         currentState = newState;
-        if (newState == EnemyState.Reposition)
-        {
-            Vector2 randomCircle = Random.insideUnitCircle.normalized * swoopRadius;
-            targetFlyPos = player.position + new Vector3(randomCircle.x, flyHeight, randomCircle.y);
-        }
-    }
-
-    void KeepUprightAndFacePlayer()
-    {
-        Vector3 direction = (player.position - transform.position).normalized;
-        direction.y = 0;
-        if (direction != Vector3.zero)
-        {
-            Quaternion lookRot = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * bodyRotationSpeed);
-        }
-    }
-
-    void AimFirePointAtPlayer()
-    {
-        if (firePoint != null)
-        {
-            Vector3 direction = (player.position - firePoint.position).normalized;
-            firePoint.rotation = Quaternion.LookRotation(direction);
-        }
     }
 
     void Shoot()
     {
-        if (pewpewPrefab && firePoint)
+        GameObject bullet = Instantiate(pewpewPrefab, firePoint.position, firePoint.rotation);
+
+        Vector3 dir = (player.position - firePoint.position).normalized;
+        bullet.transform.forward = dir;
+
+        Rigidbody rbBullet = bullet.GetComponent<Rigidbody>();
+        if (rbBullet != null)
         {
-            GameObject bullet = Instantiate(pewpewPrefab, firePoint.position, firePoint.rotation);
-            Vector3 dir = (player.position - firePoint.position).normalized;
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            if (rb) rb.AddForce(dir * bulletForce, ForceMode.Impulse);
+            rbBullet.AddForce(dir * bulletForce, ForceMode.Impulse);
         }
+    }
+
+    void RotateTowardsPlayer()
+    {
+        Vector3 dir = player.position - transform.position;
+        dir.y = 0f;
+
+        if (dir != Vector3.zero)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRot,
+                Time.deltaTime * bodyRotationSpeed
+            );
+        }
+    }
+
+    void PatrolWaypoints()
+    {
+        if (waypoints.Length == 0)
+            return;
+
+        if (agent.remainingDistance <= waypointReachingPoint && !agent.pathPending)
+        {
+            currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
+            MoveToNextWaypoint();
+        }
+    }
+
+    void MoveToNextWaypoint()
+    {
+        agent.SetDestination(waypoints[currentWaypoint].position);
+    }
+
+    Vector3 FindRepositionPosition()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            Vector2 random = Random.insideUnitCircle.normalized * repositionRadius;
+            Vector3 candidate = player.position + new Vector3(random.x, 0f, random.y);
+
+            if (Vector3.Distance(candidate, player.position) < minDistanceFromPlayer)
+                continue;
+
+            if (NavMesh.SamplePosition(candidate, out NavMeshHit hit, 2f, NavMesh.AllAreas))
+                return hit.position;
+        }
+
+        return player.position - player.forward * minDistanceFromPlayer;
     }
 }

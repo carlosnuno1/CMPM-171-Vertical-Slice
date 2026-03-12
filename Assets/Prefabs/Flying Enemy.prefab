@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1138684381645845653}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.04, z: -0}
+  m_LocalPosition: {x: 0, y: 1.347, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -156,9 +156,8 @@ GameObject:
   - component: {fileID: 4338090533206189287}
   - component: {fileID: 7061969857655410473}
   - component: {fileID: 5761201058694146707}
-  - component: {fileID: -2475131130860592133}
-  - component: {fileID: 4947644291321793599}
-  - component: {fileID: -6495761062499456100}
+  - component: {fileID: 6645778313106602179}
+  - component: {fileID: 7546686446632197600}
   m_Layer: 0
   m_Name: Flying Enemy
   m_TagString: Untagged
@@ -238,7 +237,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-2475131130860592133
+--- !u!136 &6645778313106602179
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8309215704057744759}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7546686446632197600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,59 +274,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAIBehavior
   waypoints: []
   player: {fileID: 0}
-  detectionRadius: 15
-  shootingDistance: 10
-  preferredDistanceInFront: 5
-  flyHeight: 6
-  flySpeed: 5
-  floatAmplitude: 0.5
-  floatFrequency: 1
-  bodyRotationSpeed: 5
+  detectionRadius: 10
+  playerReachingPoint: 1
+  patrolSpeed: 3.5
+  chaseSpeed: 5.5
+  waypointReachingPoint: 0.5
   pewpewPrefab: {fileID: 6305686143639336475, guid: 6ab4321b2c9da244288aa8014a982592, type: 3}
   firePoint: {fileID: 6485868171726875726}
   timeBetweenShots: 1
   shotCount: 3
+  shootingDistance: 8
   bulletForce: 40
-  swoopRadius: 8
-  swoopSpeedMultiplier: 1.5
---- !u!54 &4947644291321793599
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8309215704057744759}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 1
---- !u!114 &-6495761062499456100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8309215704057744759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38ed6464698ebfc49895de19f92443b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 100
-  LevelManager: {fileID: 0}
+  bodyRotationSpeed: 5
+  repositionRadius: 5
+  minDistanceFromPlayer: 2
+  flyForce: 50
+  maxFlySpeed: 20
+  hoverHeight: 2
+  arrivalDistance: 0.5
