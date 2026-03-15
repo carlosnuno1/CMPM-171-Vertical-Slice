@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 30194015748110
-    m_Localized: "AUTORIZACI\xD3N PARA USAR ONDAS DE CHOQUE"
+    m_Localized: LIBERA PARA SOLTAR
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748111
@@ -27,11 +27,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748109
-    m_Localized: SOSTENGA PISTOLAS/ONDAS DE CHOQUE
+    m_Localized: AGARRAR LA PARED/ARMAS
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748108
-    m_Localized: DISPARAR
+    m_Localized: DISPARAR/AGARRAR
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748107
@@ -160,6 +160,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 142384639066112
     m_Localized: VOLVER AL INICIO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1438658820579328
+    m_Localized: MOVER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1439551691431936
+    m_Localized: "GIRA C\xC1MARA"
     m_Metadata:
       m_Items: []
   references:

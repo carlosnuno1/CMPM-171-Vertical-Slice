@@ -159,6 +159,14 @@ MonoBehaviour:
     m_Key: Level.MMReturn
     m_Metadata:
       m_Items: []
+  - m_Id: 1438658820579328
+    m_Key: Controls.Move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1439551691431936
+    m_Key: Controls.RotateCamera
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
