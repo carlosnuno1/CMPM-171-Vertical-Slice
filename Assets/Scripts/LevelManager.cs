@@ -5,11 +5,13 @@ public class LevelManager : MonoBehaviour
 {
     public int totalEnemiesRequired = 5;
     public int currentEnemiesKilled = 0;
-    public float timer = 0f;
+    public static float timer = 0f;
     public bool isTimerRunning = false;
     public bool playerInEndZone = false;
     public bool levelComplete = false;
     public TextMeshProUGUI timerText;
+    public string nextLevel;
+    public SceneLoader sceneManager;
 
 
     void Update()
@@ -59,5 +61,6 @@ public class LevelManager : MonoBehaviour
         levelComplete = true;
         isTimerRunning = false;
         Debug.Log("Level Complete: " + timer);
+        sceneManager.LoadScene(nextLevel);
     }
 }

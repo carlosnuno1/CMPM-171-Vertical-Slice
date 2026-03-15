@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Death Scene.unity
     guid: 03dac8bd63f742449bbbadcadae8ffdc
+  - enabled: 1
+    path: Assets/Scenes/Level Complete.unity
+    guid: 4550acf76b3014b46b2574c9c546e301
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: de878a1dc23c3d6439ac9a371404acd4, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
