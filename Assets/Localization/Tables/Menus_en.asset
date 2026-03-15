@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 30194015748110
-    m_Localized: RELEASE TO USE SHOCKWAVES
+    m_Localized: RELEASE TO LET GO
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748111
@@ -27,11 +27,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748109
-    m_Localized: HOLD PISTOLS/SHOCKWAVES
+    m_Localized: GRAB WALL/WEAPONS
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748108
-    m_Localized: SHOOT
+    m_Localized: SHOOT/GRAPPLE
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748107
@@ -160,6 +160,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 142384639066112
     m_Localized: RETURN TO MAIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1438658820579328
+    m_Localized: MOVE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1439551691431936
+    m_Localized: ROTATE CAMERA
     m_Metadata:
       m_Items: []
   references:
