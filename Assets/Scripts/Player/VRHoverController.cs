@@ -14,7 +14,7 @@ public class VRHoverController : MonoBehaviour
     public float springStrength = 800f;
     public float damping = 50f;
 
-    public bool grounded;
+    public static bool grounded;
     public float groundFriction = 8f;
 
     void FixedUpdate()
