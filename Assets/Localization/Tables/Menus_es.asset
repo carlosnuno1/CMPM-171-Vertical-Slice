@@ -51,11 +51,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748103
-    m_Localized: Efectos de sonido
+    m_Localized: SONIDO
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748102
-    m_Localized: MAESTRO
+    m_Localized: VELOCIDAD DE GIRO
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748101
@@ -63,7 +63,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748100
-    m_Localized: AUDIO
+    m_Localized: ACCESIBILIDAD
     m_Metadata:
       m_Items: []
   - m_Id: 30194015748099
@@ -95,7 +95,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 30194011553799
-    m_Localized: AUDIO
+    m_Localized: ACCESIBILIDAD
     m_Metadata:
       m_Items: []
   - m_Id: 30194011553798

@@ -12,7 +12,6 @@ public class OpenMenuScript : MonoBehaviour
     [SerializeField] public GameObject menuCanvas;
     [SerializeField] public GameObject watchEmpty;
     [SerializeField] public GameObject generalEmpty;
-    [SerializeField] public GameObject audioEmpty;
     [SerializeField] public GameObject controlsEmpty;
     [SerializeField] public GameObject accessiblityEmpty;
     [SerializeField] public GameObject mainMenuEmpty;
@@ -100,11 +99,10 @@ public class OpenMenuScript : MonoBehaviour
     private void PanelsOff()
     {
         controlsEmpty.SetActive(false);
-        accessiblityEmpty.SetActive(false);
         watchEmpty.SetActive(true);
         generalEmpty.SetActive(false);
         settingsEmpty.SetActive(false);
-        audioEmpty.SetActive(false);
+        accessiblityEmpty.SetActive(false);
         mainMenuEmpty.SetActive(false);
         creditsEmpty.SetActive(false);
         deathPanelEmpty.SetActive(false);

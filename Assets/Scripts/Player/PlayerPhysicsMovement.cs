@@ -9,7 +9,7 @@ public class VRPhysicsLocomotion : MonoBehaviour
     public float moveForce = 30f;
     public float maxSpeed = 5f;
     public float airControlModifier = 0.5f;
-    public float turnSpeedDegrees = 90f;
+    public static float turnSpeedDegrees = 90f;
     public float turnDeadzone = 0.2f;
 
     public InputActionProperty movementAxis;
@@ -69,13 +69,9 @@ public class VRPhysicsLocomotion : MonoBehaviour
             return;
 
         float deltaYaw = turnInput * turnSpeedDegrees * Time.fixedDeltaTime;
-        Quaternion yawRotation = Quaternion.Euler(0f, deltaYaw, 0f);
 
-        rb.MoveRotation(rb.rotation * yawRotation);
+        Vector3 pivot = headYawSource.position;
 
-        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-        Vector3 yVel = new Vector3(0f, rb.linearVelocity.y, 0f);
-        flatVel = yawRotation * flatVel;
-        rb.linearVelocity = flatVel + yVel;
+        rb.transform.RotateAround(pivot, Vector3.up, deltaYaw);
     }
 }
